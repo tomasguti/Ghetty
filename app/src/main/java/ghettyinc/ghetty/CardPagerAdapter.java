@@ -1,12 +1,18 @@
 package ghettyinc.ghetty;
 
 import android.app.Activity;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.support.v4.view.PagerAdapter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.parse.GetDataCallback;
+import com.parse.ParseException;
+import com.parse.ParseFile;
 
 import java.util.List;
 
@@ -43,8 +49,22 @@ public class CardPagerAdapter extends PagerAdapter{
         ImageView house = (ImageView) view.findViewById(R.id.house);
 
         if(group.getBoolean("house")){
-
+            house.setVisibility(View.VISIBLE);
+        }else{
+            house.setVisibility(View.INVISIBLE);
         }
+
+        final ImageView imageView = (ImageView) view.findViewById(R.id.imageView);
+        ParseFile image = group.getParseFile("imageFile");
+        image.getDataInBackground(new GetDataCallback() {
+            @Override
+            public void done(byte[] data, ParseException e) {
+                if(e == null){
+                    Bitmap bitmap = BitmapFactory.decodeByteArray(data, 0 , data.length);
+                    imageView.setImageBitmap(bitmap);
+                }
+            }
+        });
 
         container.addView(view);
         return view;
