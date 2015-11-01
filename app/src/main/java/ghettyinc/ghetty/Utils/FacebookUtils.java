@@ -35,7 +35,6 @@ public class FacebookUtils {
                         if(response != null){
                             Log.d("JSON", response.toString());
                         }
-                        ParseUtils.createUser(object);
                     }
                 });
 
@@ -59,11 +58,11 @@ public class FacebookUtils {
                         // Application code
                         if(object != null){
                             Log.d("JSON", object.toString());
+                            ParseUtils.createUser(object);
                         }
                         if(response != null){
                             Log.d("JSON", response.toString());
                         }
-                        ParseUtils.createUser(object);
                     }
                 });
 

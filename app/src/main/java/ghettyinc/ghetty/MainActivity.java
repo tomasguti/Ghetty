@@ -96,10 +96,8 @@ public class MainActivity extends Activity {
         Group.getMoreGroups(new FindCallback<Group>() {
             @Override
             public void done(List<Group> objects, ParseException e) {
-
-                Log.d("objects", objects.toString());
-
                 if(objects.size() > 0){
+                    //Log.d("objects", objects.toString());
                     adapter.setData(objects);
                     pager.setAdapter(adapter);
                     //Necessary or the pager will only have one extra page to show
