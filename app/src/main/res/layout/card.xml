@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/card_borders">
+
+    <com.makeramen.roundedimageview.RoundedImageView
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        app:riv_corner_radius_top_left="10dip"
+        app:riv_corner_radius_top_right="10dip"
+        android:id="@+id/imageView"
+        android:scaleType="centerCrop"
+        android:layout_above="@+id/linearLayout" />
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:minHeight="100dp"
+        android:id="@+id/linearLayout"
+        android:background="#00ffffff"
+        android:weightSum="3">
+
+        <RelativeLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Nombre del Grupo"
+                android:id="@+id/groupNameTextView"
+                android:textColor="#000000"
+                android:typeface="normal"
+                android:background="#00ffffff"
+                android:layout_margin="3dp"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/house"
+                android:background="@drawable/ic_store_mall_directory_24dp"
+                android:layout_alignParentTop="false"
+                android:layout_toStartOf="@+id/membersIcon"
+                android:layout_centerVertical="true" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/ic_account_box_24dp"
+                android:layout_centerVertical="true"
+                android:layout_toLeftOf="@+id/peopleCount"
+                android:layout_toStartOf="@+id/peopleCount"
+                android:id="@+id/membersIcon" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="99"
+                android:id="@+id/peopleCount"
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginRight="7dp"
+                android:textColor="#52cbff"
+                android:textStyle="bold"
+                android:textAlignment="center" />
+        </RelativeLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="Descripción del Grupo"
+            android:id="@+id/groupDescriptionTextView"
+            android:layout_gravity="bottom"
+            android:textColor="#848484"
+            android:typeface="sans"
+            android:background="#00ffffff"
+            android:layout_marginLeft="3dp"
+            android:layout_marginRight="3dp"
+            android:layout_marginBottom="3dp"
+            android:layout_marginTop="0dp"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp" />
+    </LinearLayout>
+</RelativeLayout>
