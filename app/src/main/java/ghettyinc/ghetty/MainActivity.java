@@ -43,7 +43,7 @@ public class MainActivity extends Activity {
     protected Notifications notifications;
     protected PagerContainer mContainer;
     protected ViewPager pager;
-    protected MyPagerAdapter adapter;
+    protected CardPagerAdapter adapter;
     protected SimpleLocation location;
 
     @Override
@@ -66,7 +66,7 @@ public class MainActivity extends Activity {
         mContainer = (PagerContainer) findViewById(R.id.pager_container);
 
         pager = mContainer.getViewPager();
-        adapter = new MyPagerAdapter(this);
+        adapter = new CardPagerAdapter(this);
 
         //A little space between pages
         pager.setPageMargin(10);
