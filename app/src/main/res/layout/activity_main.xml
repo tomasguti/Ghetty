@@ -6,52 +6,6 @@
     android:paddingBottom="@dimen/activity_vertical_margin" tools:context=".MainActivity"
     android:background="@drawable/background_gradient">
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:background="#5fbfff"
-        android:id="@+id/relativeLayout">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Nombre de Grupo"
-            android:id="@+id/myGroupName"
-            android:layout_centerVertical="true"
-            android:layout_centerHorizontal="true"
-            android:textColor="#ffffff"
-            android:textStyle="bold"
-            android:textSize="20dp" />
-
-        <ImageButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/imageButton"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:background="@drawable/ic_notifications_none_24dp"
-            android:onClick="showLeft"
-            android:layout_alignParentEnd="false"
-            android:layout_alignParentBottom="false"
-            android:layout_centerVertical="true"
-            android:layout_margin="7dp" />
-
-        <ImageButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/imageButton2"
-            android:background="@drawable/ic_forum_24dp"
-            android:onClick="showRight"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true"
-            android:layout_margin="7dp"
-            android:layout_centerVertical="true" />
-    </RelativeLayout>
-
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -91,4 +45,84 @@
         </ghettyinc.ghetty.PagerContainer>
 
     </FrameLayout>
+
+    <RelativeLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#ffffff"
+        android:id="@+id/myGroups"
+        android:visibility="gone">
+        <ListView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/myGroupsListView"
+            android:layout_gravity="center_horizontal"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="60dp"
+            android:dividerHeight="1px"
+            android:divider="#b8b8b8"
+            android:drawSelectorOnTop="false" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:background="#5fbfff"
+        android:id="@+id/relativeLayout">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Nombre de Grupo"
+            android:id="@+id/myGroupName"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true"
+            android:textColor="#ffffff"
+            android:textStyle="bold"
+            android:textSize="20dp"
+            android:onClick="groupClick"
+            android:clickable="true" />
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/notificationsButton"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:background="@drawable/ic_notifications_none_24dp"
+            android:onClick="showLeft"
+            android:layout_alignParentEnd="false"
+            android:layout_alignParentBottom="false"
+            android:layout_centerVertical="true"
+            android:layout_margin="7dp" />
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/chatButton"
+            android:background="@drawable/ic_forum_24dp"
+            android:onClick="showRight"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:layout_margin="7dp"
+            android:layout_centerVertical="true" />
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/dropDown"
+            android:background="@drawable/ic_arrow_drop_down_24dp"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/myGroupName"
+            android:layout_toEndOf="@+id/myGroupName"
+            android:onClick="groupClick" />
+
+    </RelativeLayout>
+
 </RelativeLayout>

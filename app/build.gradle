@@ -30,4 +30,5 @@ dependencies {
     compile project(':slidingmenu')
     compile 'com.makeramen:roundedimageview:2.2.0'
     compile files('libs/Android-SimpleLocation.jar')
+    compile 'com.squareup.picasso:picasso:2.5.2'
 }

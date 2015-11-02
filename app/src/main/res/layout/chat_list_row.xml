@@ -29,7 +29,7 @@
             android:textStyle="bold"
             android:paddingTop="10dp"
             android:layout_gravity="right"
-            android:id="@+id/textView2"
+            android:id="@+id/myGroupRowText"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
             android:layout_alignParentRight="true" />
@@ -42,7 +42,7 @@
             android:textColor="#000000"
             android:layout_gravity="right"
             android:paddingBottom="10dp"
-            android:layout_below="@+id/textView2"
+            android:layout_below="@+id/myGroupRowText"
             android:layout_centerHorizontal="true"
             android:layout_alignParentRight="true"
             android:textStyle="italic" />

@@ -14,7 +14,11 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
+import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.facebook.appevents.AppEventsLogger;
@@ -45,6 +49,11 @@ public class MainActivity extends Activity {
     protected ViewPager pager;
     protected CardPagerAdapter adapter;
     protected SimpleLocation location;
+    protected RelativeLayout myGroups;
+    protected ListView myGroupsListView;
+    protected boolean animatingMyGroup;
+
+    protected boolean myGroupsSlided;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -96,7 +105,7 @@ public class MainActivity extends Activity {
         Group.getMoreGroups(new FindCallback<Group>() {
             @Override
             public void done(List<Group> objects, ParseException e) {
-                if(objects.size() > 0){
+                if (objects.size() > 0) {
                     //Log.d("objects", objects.toString());
                     adapter.setData(objects);
                     pager.setAdapter(adapter);
@@ -106,6 +115,72 @@ public class MainActivity extends Activity {
                 }
             }
         });
+
+        //Mis grupos sliding
+        myGroupsSlided = false;
+        myGroups = (RelativeLayout) findViewById(R.id.myGroups);
+        myGroupsListView = (ListView) myGroups.findViewById(R.id.myGroupsListView);
+        animatingMyGroup = false;
+        final MyGroupsAdapter myGroupsAdapter = new MyGroupsAdapter(this);
+
+        Group.getMyGroups(new FindCallback<Group>() {
+            @Override
+            public void done(List<Group> objects, ParseException e) {
+                if(objects.size() > 0){
+                    //Log.d("objects", objects.toString());
+                    myGroupsAdapter.setData(objects);
+                    myGroupsListView.setAdapter(myGroupsAdapter);
+                }
+            }
+        });
+    }
+
+    public void groupClick(View v) {
+
+        if(!animatingMyGroup){
+            if(myGroups.getVisibility() == View.GONE){
+                Animation slideDown = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.slide_down);
+                slideDown.setAnimationListener(new Animation.AnimationListener() {
+                    @Override
+                    public void onAnimationStart(Animation animation) {
+                        myGroups.setVisibility(View.VISIBLE);
+                    }
+
+                    @Override
+                    public void onAnimationEnd(Animation animation) {
+                        animatingMyGroup = false;
+                    }
+
+                    @Override
+                    public void onAnimationRepeat(Animation animation) {
+
+                    }
+                });
+                animatingMyGroup = true;
+                myGroups.startAnimation(slideDown);
+            }else{
+                Animation slideUp = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.slide_up);
+                slideUp.setAnimationListener(new Animation.AnimationListener() {
+                    @Override
+                    public void onAnimationStart(Animation animation) {
+
+                    }
+
+                    @Override
+                    public void onAnimationEnd(Animation animation) {
+                        myGroups.setVisibility(View.GONE);
+                        animatingMyGroup = false;
+                    }
+
+                    @Override
+                    public void onAnimationRepeat(Animation animation) {
+
+                    }
+                });
+                animatingMyGroup = true;
+                myGroups.startAnimation(slideUp);
+            }
+        }
     }
 
     public void showRight(View view) {

@@ -37,7 +37,7 @@ public class Group extends ParseObject{
 
     public static void getImage(Group group, final ImageView imageView){
         if(group.getParseObject("image") != null){
-            ParseFile imageFile = (ParseFile) group.getParseObject("image").getParseFile("image");
+            ParseFile imageFile = group.getParseObject("image").getParseFile("image");
             if (imageFile != null) {
                 imageFile.getDataInBackground(new GetDataCallback() {
                     @Override
@@ -50,39 +50,6 @@ public class Group extends ParseObject{
                 });
             }
         }
-
-       /*
-
-        ParseQuery<ParseObject> query = ParseQuery.getQuery("GroupImages");
-
-        if(group.getParse("image") != null){
-
-        }
-
-        query.whereEqualTo("objectId", .getObjectId());
-        query.getFirstInBackground(new GetCallback<ParseObject>() {
-                                       @Override
-                                       public void done(ParseObject object, ParseException e) {
-                                           if (e == null) {
-                                               ParseFile imageFile = (ParseFile) object.getParseFile("image");
-                                               if (imageFile != null) {
-                                                   Log.d("URL", imageFile.getUrl());
-
-                                                   imageFile.getDataInBackground(new GetDataCallback() {
-                                                       @Override
-                                                       public void done(byte[] dataArray, ParseException e) {
-                                                           if (e == null) {
-                                                               Bitmap bitmap = BitmapFactory.decodeByteArray(dataArray, 0, dataArray.length);
-                                                               imageView.setImageBitmap(bitmap);
-                                                           }
-                                                       }
-                                                   });
-                                               }
-                                           }
-                                       }
-                                   }
-        );
-        */
     }
 
     public static void getUserWithCurrentGroup(GetCallback<ParseObject> callback){
@@ -92,9 +59,10 @@ public class Group extends ParseObject{
         query.getFirstInBackground(callback);
     }
 
-    public static List<Group> getMyGroups(FindCallback<Group> callback){
+    public static void getMyGroups(FindCallback<Group> callback){
         ParseQuery<Group> query = ParseQuery.getQuery(Group.class);
-        query.setLimit(10);
+        query.include("image");
+        query.setLimit(3);
 
         //query.whereNear("location", ParseUtils.geoPoint);
         query.findInBackground(callback);
@@ -109,7 +77,6 @@ public class Group extends ParseObject{
             }
         });
         */
-        return myGroups;
     }
 
 }
