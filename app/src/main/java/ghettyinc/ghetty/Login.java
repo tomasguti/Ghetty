@@ -79,7 +79,7 @@ public class Login extends Activity {
     }
 
     public void loginButtonHandler(View view) {
-        Log.d("Button", "touched");
+        //Log.d("Button", "touched");
         facebookLogin();
     }
 

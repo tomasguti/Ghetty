@@ -15,7 +15,6 @@
         android:layout_alignParentEnd="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:theme="@style/AppTheme"
         android:onClick="loginButtonHandler"
         android:background="@drawable/com_facebook_tooltip_blue_background"
         android:layout_alignParentBottom="true"
