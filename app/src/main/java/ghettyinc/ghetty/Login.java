@@ -8,13 +8,18 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.parse.GetCallback;
 import com.parse.LogInCallback;
 import com.parse.Parse;
 import com.parse.ParseException;
 import com.parse.ParseFacebookUtils;
 import com.parse.ParseObject;
+import com.parse.ParseQuery;
 import com.parse.ParseUser;
+import com.parse.http.ParseHttpResponse;
+import com.parse.http.ParseNetworkInterceptor;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -34,10 +39,23 @@ public class Login extends Activity {
         ParseObject.registerSubclass(Invitation.class);
 
         //Parse.enableLocalDatastore(this);
-        Parse.initialize(this);
+
+        //Parse.initialize(this); //Old Parse
+
+        String parse_app_id = "superGhetty";
+        String parse_client_key = "esloquehay";
+        String heroku_server = "https://ghetty.herokuapp.com/parse/";
+
+        Parse.setLogLevel(Parse.LOG_LEVEL_ERROR);
+
+        //Heroku
+        Parse.initialize(new Parse.Configuration.Builder(this).applicationId(parse_app_id).clientKey(parse_client_key).server(heroku_server).build());
         ParseFacebookUtils.initialize(this);
 
         if(ParseUser.getCurrentUser()!=null){
+
+            Log.d("USER", ParseUser.getCurrentUser().getUsername());
+            Log.d("MAIL", ParseUser.getCurrentUser().getEmail());
             launchMain();
         }else{
             setContentView(R.layout.activity_login);
@@ -94,6 +112,11 @@ public class Login extends Activity {
         ParseFacebookUtils.logInWithReadPermissionsInBackground(this, permissions, new LogInCallback() {
             @Override
             public void done(ParseUser user, ParseException e) {
+
+                if(e!=null){
+                    Log.d("ParseException", e.getCode() + " " + e.getMessage());
+                }
+
                 if (user == null) {
                     Log.d("MyApp", "Uh oh. The user cancelled the Facebook login.");
                 } else if (user.isNew()) {
@@ -106,9 +129,5 @@ public class Login extends Activity {
             }
         });
     }
-
-
-
-
 
 }

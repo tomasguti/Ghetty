@@ -105,7 +105,7 @@ public class MainActivity extends Activity {
         Group.getMoreGroups(new FindCallback<Group>() {
             @Override
             public void done(List<Group> objects, ParseException e) {
-                if (objects.size() > 0) {
+                if (e == null && objects.size() > 0) {
                     //Log.d("objects", objects.toString());
                     adapter.setData(objects);
                     pager.setAdapter(adapter);
@@ -126,7 +126,7 @@ public class MainActivity extends Activity {
         Group.getMyGroups(new FindCallback<Group>() {
             @Override
             public void done(List<Group> objects, ParseException e) {
-                if(objects.size() > 0){
+                if(e == null && objects.size() > 0){
                     //Log.d("objects", objects.toString());
                     myGroupsAdapter.setData(objects);
                     myGroupsListView.setAdapter(myGroupsAdapter);
